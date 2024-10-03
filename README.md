@@ -23,7 +23,8 @@ spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true´´´
+spring.jpa.show-sql=true
+´´´
 
 ## Passos para executar o projeto
 
@@ -36,7 +37,8 @@ cd demencia-api
 
 mvn clean install
 
-mvn spring-boot:run´´´
+mvn spring-boot:run
+´´´
 
 ##4. Acessar a API
 Após a execução, a aplicação estará disponível em:
