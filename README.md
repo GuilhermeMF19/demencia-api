@@ -23,7 +23,7 @@ spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.show-sql=true´´´
 
 ## Passos para executar o projeto
 
@@ -36,32 +36,26 @@ cd demencia-api
 
 mvn clean install
 
-mvn spring-boot:run
+mvn spring-boot:run´´´
 
-4. Acessar a API
+##4. Acessar a API
 Após a execução, a aplicação estará disponível em:
 
-bash
-Copiar código
 http://localhost:8080
 Você pode acessar a documentação da API gerada automaticamente pelo SpringDoc OpenAPI na seguinte URL:
 
-bash
-Copiar código
+
 http://localhost:8080/swagger-ui.html
 5. Testes
 Para executar os testes, utilize o comando:
 
-bash
-Copiar código
+
 mvn test
 6. JWT e Autenticação
 A API utiliza JWT (JSON Web Token) para autenticação. O fluxo de autenticação padrão envolve a geração de um token na rota de login, que deve ser incluído no cabeçalho das requisições subsequentes.
 
 Exemplo de envio de token em uma requisição:
 
-http
-Copiar código
 Authorization: Bearer <seu_token_jwt>
 Dependências utilizadas
 O projeto utiliza as seguintes dependências principais:
@@ -73,5 +67,6 @@ Spring Security: Para segurança e autenticação via JWT.
 SpringDoc OpenAPI: Para gerar e exibir a documentação da API no Swagger.
 Spring Boot DevTools: Para facilitar o desenvolvimento com hot reload.
 Java JWT (Auth0): Para criação e validação de tokens JWT.
-Considerações finais
-Certifique-se de que o PostgreSQL está rodando e que o usuário/credenciais fornecidos estão corretos no arquivo application.properties. A API foi configurada para rodar em localhost:8080, mas você pode alterar essa porta nas configurações do Spring Boot.
+
+##Considerações finais
+###Certifique-se de que o PostgreSQL está rodando e que o usuário/credenciais fornecidos estão corretos no arquivo application.properties. A API foi configurada para rodar em localhost:8080, mas você pode alterar essa porta nas configurações do Spring Boot.
