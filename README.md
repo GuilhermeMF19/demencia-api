@@ -24,7 +24,7 @@ spring.datasource.password=sua_senha
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-´´´
+````
 
 ## Passos para executar o projeto
 
@@ -38,28 +38,26 @@ cd demencia-api
 mvn clean install
 
 mvn spring-boot:run
-´´´
+````
 
 ##4. Acessar a API
 Após a execução, a aplicação estará disponível em:
-
 http://localhost:8080
+
 Você pode acessar a documentação da API gerada automaticamente pelo SpringDoc OpenAPI na seguinte URL:
-
-
 http://localhost:8080/swagger-ui.html
-5. Testes
+
+##5. Testes
 Para executar os testes, utilize o comando:
-
-
 mvn test
-6. JWT e Autenticação
+
+##6. JWT e Autenticação
 A API utiliza JWT (JSON Web Token) para autenticação. O fluxo de autenticação padrão envolve a geração de um token na rota de login, que deve ser incluído no cabeçalho das requisições subsequentes.
 
 Exemplo de envio de token em uma requisição:
-
 Authorization: Bearer <seu_token_jwt>
-Dependências utilizadas
+
+##Dependências utilizadas
 O projeto utiliza as seguintes dependências principais:
 
 Spring Boot Starter Web: Para construir APIs RESTful.
