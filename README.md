@@ -3,6 +3,9 @@
 ## Descrição
 A **Dementia API** é uma API RESTful desenvolvida em Java utilizando o framework Spring Boot. Ela se conecta a um banco de dados PostgreSQL e oferece funcionalidades diversas. Além disso, a API implementa autenticação via JWT e utiliza o Spring Security para proteger as rotas.
 
+## Pasta Postman
+Na pasta postman tem o json para ser importado.
+
 ## Pré-requisitos
 Antes de executar o projeto, certifique-se de ter instalado:
 
