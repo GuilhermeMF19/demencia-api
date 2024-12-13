@@ -12,9 +12,8 @@ COPY pom.xml ./pom.xml
 # Dá permissão de execução ao Maven Wrapper
 RUN chmod +x mvnw
 
-# Instala as dependências do Maven e realiza o download das dependências do projeto
-RUN apt-get update && apt-get install -y maven \
-    && ./mvnw dependency:go-offline -B
+# Instala as dependências do Maven
+RUN ./mvnw dependency:resolve
 
 # Copia o código-fonte para o contêiner
 COPY src ./src
