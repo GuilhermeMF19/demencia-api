@@ -17,36 +17,44 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-	@Autowired
-	SecurityFilter securityFilter;
-	
-	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		return httpSecurity
-				.csrf(csrf -> csrf.disable())
-				.sessionManagement(Session -> Session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers(
-								"/auth/login",
-								"/auth/register",
-	                    		"/swagger-ui/**",
-	                    		"/v3/api-docs/**"
-	                		).permitAll()
-						.requestMatchers(HttpMethod.POST, "/task").hasRole("ADMIN")
-						.requestMatchers("/api/user/v1/**").hasRole("ADMIN")
-						.anyRequest().authenticated()
-				)
-				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-				.build();
-	}
-	
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
-	}
-	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+
+    @Autowired
+    SecurityFilter securityFilter;
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                // Desativando CSRF para evitar bloqueios durante o teste
+                .csrf(csrf -> csrf.disable())
+                // Configuração de CORS
+                .cors()
+                .and()
+                // Configuração de sessão
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                // Configuração de autorizações
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(
+                                "/auth/login",
+                                "/auth/register",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll() // Permite acesso a rotas públicas
+                        .requestMatchers(HttpMethod.POST, "/task").hasRole("ADMIN") // Exemplo de rota protegida
+                        .requestMatchers("/api/user/v1/**").hasRole("ADMIN") // Exemplo de rota protegida
+                        .anyRequest().authenticated() // Protege todas as outras rotas
+                )
+                // Adiciona o filtro de autenticação
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
+    }
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
